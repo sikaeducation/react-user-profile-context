@@ -1,20 +1,14 @@
-import { useState } from "react"
-import UserContext from "./contexts/UserContext"
+import { UserContextProvider } from "./contexts/user-context"
 import HeaderBar from "./components/HeaderBar"
 import "./App.css"
-import Avatar from "./assets/miles.jpg"
 
 const App = () => {
-  const [currentUser, setCurrentUser] = useState({
-    name: "Miles Davis",
-    imageUrl: Avatar,
-  })
 
   return (
     <div className="App">
-      <UserContext.Provider value={currentUser}>
+      <UserContextProvider>
         <HeaderBar />
-      </UserContext.Provider>
+      </UserContextProvider>
     </div>
   )
 }

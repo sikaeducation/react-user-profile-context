@@ -1,14 +1,15 @@
 import { useContext } from "react"
-import UserContext from "../contexts/UserContext"
+import { UserContext } from "../contexts/user-context"
 import "./UserProfile.css"
 
 const UserProfile = () => {
-  const user = useContext(UserContext)
+  const { currentUser } = useContext(UserContext)
+  const { imageUrl, name } = currentUser
 
   return (
     <div className="UserProfile">
-      <img src={user.imageUrl} alt={`Avatar of ${user.name}`} />
-      <p>{user.name}</p>
+      <img src={imageUrl} alt={`Avatar of ${name}`} />
+      <p>{name}</p>
     </div>
   )
 }
