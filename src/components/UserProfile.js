@@ -1,15 +1,28 @@
 import { useContext } from "react"
 import { UserContext } from "../contexts/user-context"
 import "./UserProfile.css"
+import avatar from "../assets/miles.jpg"
 
 const UserProfile = () => {
-  const { currentUser } = useContext(UserContext)
-  const { imageUrl, name } = currentUser
+  const { currentUser, setCurrentUser } = useContext(UserContext)
+  const handleLogout = () => setCurrentUser(null)
+  const handleLogin = () => setCurrentUser({
+    name: "Miles Davis",
+    imageUrl: avatar,
+  })
 
   return (
     <div className="UserProfile">
-      <img src={imageUrl} alt={`Avatar of ${name}`} />
-      <p>{name}</p>
+      {
+        currentUser
+          ? (
+            <>
+              <img src={currentUser.imageUrl} alt={`Avatar of ${currentUser.name}`} />
+              <button onClick={handleLogout}>Logout</button>
+            </>
+          )
+          : <button onClick={handleLogin}>Login</button>
+      }
     </div>
   )
 }
